@@ -52,6 +52,9 @@ class AuthorDetailView(generic.DetailView):
     """Generic class-based detail view for an author."""
     model = Author
 
+#第三方登入
+class Homepage(generic.TemplateView):
+	template_name = 'home.html'
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -165,3 +168,4 @@ class BookDelete(PermissionRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('books')
     permission_required = 'catalog.can_mark_returned'
+

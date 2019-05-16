@@ -1,7 +1,7 @@
-from django.urls import path
-
+from django.urls import path,include
+from django.contrib import admin
 from . import views
-
+from .views import  Homepage
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -38,3 +38,12 @@ urlpatterns += [
     path('book/<int:pk>/update/', views.BookUpdate.as_view(), name='book_update'),
     path('book/<int:pk>/delete/', views.BookDelete.as_view(), name='book_delete'),
 ]
+
+urlpatterns += [
+    path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
+    path('', Homepage.as_view(), name='home'),
+	path('', include('social_django.urls', namespace='social')),
+    ]
+	
+
